@@ -2,4 +2,5 @@
 Oppimassa **ohjelmistotuotantoprosessin** *suunnittelusta* ja sen muista vaiheista!
 # Tehtävät
 
-## Viikko 1
+[laskarit](https://github.com/paulikarels/ot-harjoitustyo/tree/main/laskarit)
+
