@@ -1,11 +1,11 @@
 # Vaatimusmäärittely
 
 ## Sovelluksen käyttötarkoitus
-Sovellus toimii **verkkokurssialustana**, jonka pää ideana on mahdollistaa käyttäjien luoda kursseja ja niihin ratkottavia tehtäviä opiskelukäyttöön. 
+Sovellus toimii **verkkokurssialustana**, jonka pää ideana on mahdollistaa ylläpitäjien luoda kursseja ja niihin ratkottavia tehtäviä opiskelukäyttöön.
 
 Käyttäjät voivat joko olla ylläpitäjiä tai peruskäyttäjiä.
 
-Ylläpitäjä voi graafisesti hallinoida oman kurssin rekisteröityneitä peruskäyttäjiä, sekä seurata peruskäyttäjien tehtävien tuloksia. Peruskäyttäjät sekä ylläpitäjät myös itse voivat liittyä vapaasti haluamiinsa kursseihin ja tarkastella omien vastauksien tuloksia. Kurssitehtävät tarkistetaan automaattisesti joko monivalintoina tai tekstikenttinä.
+Ylläpitäjä voi graafisesti hallinoida oman kurssin rekisteröityneitä peruskäyttäjiä, sekä seurata peruskäyttäjien tehtävien tuloksia. Peruskäyttäjät sekä ylläpitäjät voivat vapaasti liittyä haluamiinsa kursseihin ja tarkastella omien vastauksien tuloksia. Kurssitehtävät tarkistetaan automaattisesti joko monivalintoina tai tekstikenttinä.
 
 
 ## Päätoiminnallisuudet
