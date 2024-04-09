@@ -18,6 +18,13 @@ Oppimassa **ohjelmistotuotantoprosessin** *suunnittelusta* ja sen muista vaiheis
 poetry install
 ```
 
+2. Aktivoi virtuaaliympäristö (Suositeltavaa)
+
+```bash
+poetry shell
+```
+
+
 3. Käynnistä sovellus komennolla
 
 ```bash
