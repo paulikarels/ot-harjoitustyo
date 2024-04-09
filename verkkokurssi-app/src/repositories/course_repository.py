@@ -1,6 +1,6 @@
 from entities.course import Course
 from repositories.user_repository import user_repository
-from database import get_database_connection
+from databaselogic.database import get_database_connection
 
 class CourseRepository:
 

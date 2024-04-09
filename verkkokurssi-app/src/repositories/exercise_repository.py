@@ -1,6 +1,6 @@
 from entities.exercise import Exercise
 from repositories.course_repository import course_repository
-from database import get_database_connection
+from databaselogic.database import get_database_connection
 
 class ExerciseRepository:
 

@@ -1,5 +1,5 @@
 from entities.user import User
-from database import get_database_connection
+from databaselogic.database import get_database_connection
 
 class UserRepository:
 
@@ -9,6 +9,9 @@ class UserRepository:
     def create_user(self, user):
         cursor = self._connection.cursor()
         cursor.execute("INSERT INTO users (username, password, admin) values (?, ?, ?)", (user.username, user.password, user.admin))
+
+        user_id = cursor.lastrowid
+        user.id = user_id
 
         self._connection.commit()
 
