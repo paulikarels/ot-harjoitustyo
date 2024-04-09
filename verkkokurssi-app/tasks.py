@@ -1,9 +1,13 @@
 from invoke import task
 
 @task
-def flask(ctx):
-    ctx.run("flask --app src/flask_app.py run", pty=True)
+def start(ctx):
+    ctx.run("python3 src/index.py", pty=True)
 
 @task
-def start(ctx):
-    ctx.run("py src/app.py", pty=False)
+def test(ctx):
+    ctx.run("pytest src", pty=True)
+
+@task(coverage)
+def coverage_report(ctx):
+    ctx.run("coverage html", pty=True)

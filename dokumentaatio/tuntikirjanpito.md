@@ -6,3 +6,4 @@
 | 26.3 | 1 | Vaatimusmäärittely |
 | 07.4 | 1.5 | Rakenteen suunnittelu |
 | 08.4 | 6.5 | Alkurakenteen viimeistely |
+| 09.4 | 3 | Testien ja alkurakenteen tekoa/korjausta |
