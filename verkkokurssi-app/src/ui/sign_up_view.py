@@ -9,7 +9,8 @@ class SignupView:
         self._frame = None
         self._username_var = StringVar()
         self._password_var = StringVar()
-
+        self._admin_var = StringVar()
+        self._message_var = StringVar(value="") 
         self._initialize()
 
     def pack(self):
@@ -30,13 +31,27 @@ class SignupView:
         signup_button = ttk.Button(
             master=self._frame,
             text="Sign Up",
-            command=self._handle_signup
+            command=self._handle_signup_button_click
         )
 
         login_button = ttk.Button(
             master=self._frame,
             text="Back to Login",
             command=self._handle_show_login_view
+        )
+
+        admin_checkbox = ttk.Checkbutton(
+            master=self._frame,
+            text="Admin",
+            variable=self._admin_var, 
+            onvalue=True,
+            offvalue=False
+        )
+
+        self._message_label = ttk.Label(
+            master=self._frame,
+            textvariable=self._message_var,
+            foreground="green" 
         )
 
         x=2
@@ -47,13 +62,24 @@ class SignupView:
         username_entry.grid(row=1, column=1, sticky=(constants.E, constants.W), padx=x, pady=y)
         password_label.grid(padx=x, pady=y)
         password_entry.grid(row=2, column=1, sticky=(constants.E, constants.W), padx=x, pady=y)
+        admin_checkbox.grid(columnspan=2, sticky=(constants.E, constants.W), padx=x, pady=y)
         signup_button.grid(columnspan=2, sticky=(constants.E, constants.W), padx=x, pady=y)
         login_button.grid(columnspan=2, sticky=(constants.E, constants.W), padx=x, pady=y)
+        self._message_label.grid(columnspan=2, sticky=(constants.E, constants.W), padx=x, pady=y)
 
         self._frame.grid_columnconfigure(1, weight=1, minsize=500)
 
-    def _handle_signup(self):
+    def _handle_signup_button_click(self):
         username = self._username_var.get()
         password = self._password_var.get()
+        admin_status = self._admin_var.get()
 
-        self._handle_signup(username, password)
+        admin = admin_status == "True"
+
+        try:
+            self._handle_signup(username, password, admin)
+            self._message_var.set("Sign up successful!")
+            self._message_label.config(foreground="green")
+        except Exception as e:
+            self._message_var.set(f"Sign up failed: {str(e)}")
+            self._message_label.config(foreground="red") 

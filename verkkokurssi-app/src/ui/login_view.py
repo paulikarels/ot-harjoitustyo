@@ -1,5 +1,4 @@
 from tkinter import ttk, StringVar, constants
-from services.app_service import app_service
 
 class LoginView:
     def __init__(self, root, handle_login, handle_show_sign_up_view):
@@ -7,6 +6,8 @@ class LoginView:
         self._handle_login = handle_login
         self._handle_show_sign_up_view = handle_show_sign_up_view
         self._frame = None
+        self._username_var = StringVar()
+        self._password_var = StringVar()
 
         self._initialize()
 
@@ -20,15 +21,15 @@ class LoginView:
         self._frame = ttk.Frame(master=self._root)
         heading_label = ttk.Label(master=self._frame, text="Log in")
         username_label = ttk.Label(master=self._frame, text="Username")
-        username_entry = ttk.Entry(master=self._frame)
+        username_entry = ttk.Entry(master=self._frame, textvariable=self._username_var)
 
         password_label = ttk.Label(master=self._frame, text="Password")
-        password_entry = ttk.Entry(master=self._frame)
+        password_entry = ttk.Entry(master=self._frame, textvariable=self._password_var)
 
         login_button = ttk.Button(
             master=self._frame,
             text="Log in",
-            command=self._handle_login
+            command=self._handle_login_button_click
         )
 
         signup_button = ttk.Button(
@@ -49,12 +50,6 @@ class LoginView:
         signup_button.grid(columnspan=2, sticky=(constants.E, constants.W), padx=x, pady=y)
 
         self._frame.grid_columnconfigure(1, weight=1, minsize=500)
-
-    def _handle_create_user_button_click(self):
-        username = self._username_var.get()
-        password = self._password_var.get()
-
-        self._handle_show_sign_up_view(username, password)
 
     def _handle_login_button_click(self):
         username = self._username_var.get()
