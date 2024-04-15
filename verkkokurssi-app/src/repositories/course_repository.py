@@ -1,30 +1,28 @@
 from entities.course import Course
-from repositories.user_repository import user_repository
-from databaselogic.database import get_database_connection
 
 class CourseRepository:
-
-    def __init__(self, connection):
+    def __init__(self, connection=None):
         self._connection = connection
 
     def create_course(self, course):
+        from entities.user import User
+        
         cursor = self._connection.cursor()
-        cursor.execute("insert into courses (title, credits, user) values (?, ?, ?)", (course.title, course.credits, course.user))
-
+        cursor.execute("INSERT INTO courses (title, credits, user) VALUES (?, ?, ?)", (course.title, course.credits, course.user))
         self._connection.commit()
 
         return course
 
     def get_all_courses(self):
+        from entities.user import User
+        
         cursor = self._connection.cursor()
-        cursor.execute("select * from courses")
+        cursor.execute("SELECT * FROM courses")
         courses = cursor.fetchall()
 
-        return [Course(row["title"],row["credits"], row["user"]) if row else None for row in courses]
+        return [Course(row["title"], row["credits"], row["user"]) if row else None for row in courses]
 
     def delete_all_courses(self):
         cursor = self._connection.cursor()
-        cursor.execute("delete from courses")
+        cursor.execute("DELETE FROM courses")
         self._connection.commit()
-
-course_repository = CourseRepository(get_database_connection())
