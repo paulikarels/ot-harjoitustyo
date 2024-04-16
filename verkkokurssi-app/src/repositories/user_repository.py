@@ -6,7 +6,8 @@ class UserRepository:
 
     def create_user(self, user):
         cursor = self._connection.cursor()
-        cursor.execute("INSERT INTO users (username, password, admin) VALUES (?, ?, ?)", (user.username, user.password, user.admin))
+        cursor.execute("INSERT INTO users (username, password, admin) VALUES (?, ?, ?)",
+            (user.username, user.password, user.admin))
 
         user_id = cursor.lastrowid
         user.id = user_id
@@ -17,20 +18,23 @@ class UserRepository:
 
     def get_user_by_username_and_password(self, username, password):
         cursor = self._connection.cursor()
-        cursor.execute("SELECT * FROM users WHERE username = ? AND password = ?", (username, password))
+        cursor.execute("SELECT * FROM users WHERE username = ? AND password = ?",
+            (username, password))
+
         user_data = cursor.fetchone()
 
         if user_data:
-            return User(user_data["username"], user_data["password"], user_data["admin"])
-        else:
-            return None
+            return (User(user_data["username"],
+                user_data["password"], user_data["admin"]))
+        return None
 
     def get_all_users(self):
         cursor = self._connection.cursor()
         cursor.execute("SELECT * FROM users")
         users = cursor.fetchall()
 
-        return [User(row["username"], row["password"], row["admin"]) if row else None for row in users]
+        return ([User(row["username"], row["password"],
+            row["admin"]) if row else None for row in users])
 
 
     def delete_all_users(self):

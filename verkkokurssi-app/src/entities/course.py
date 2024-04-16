@@ -1,5 +1,5 @@
 class Course:
-    def __init__(self, title , credits, user=None):
-        self.title    = title 
-        self.credits  = credits
-        self.user     = user
+    def __init__(self, title , creditss, user=None):
+        self.title = title
+        self.credits = creditss
+        self.user = user

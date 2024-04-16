@@ -31,7 +31,7 @@ def create_tables(connection):
     ''')
 
     cursor.execute('''
-        CREATE TABLE  courses (
+        CREATE TABLE courses (
             id SERIAL PRIMARY KEY,
             userID INTEGER REFERENCES users ON DELETE CASCADE,
             title TEXT UNIQUE,
@@ -60,3 +60,4 @@ def initialize_database():
 
 if __name__ == "__main__":
     initialize_database()
+    

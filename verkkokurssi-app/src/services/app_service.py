@@ -1,10 +1,6 @@
+import bcrypt
 from entities.course import Course
-from entities.exercise import Exercise
 from entities.user import User
-
-from repositories.user_repository import UserRepository
-from repositories.course_repository import CourseRepository
-from repositories.exercise_repository import ExerciseRepository
 
 class AppService:
 
@@ -18,17 +14,16 @@ class AppService:
         if self._user_repository.find_by_username(username):
             raise ValueError("Username already exists")
 
-        hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+        hashed_password = bcrypt.hashpw(password.encode('utf-8'),
+            bcrypt.gensalt())
 
         user = User(username, hashed_password, admin)
 
         return self._user_repository.create(user)
 
-
-    def create_course(self, title, credits):
-        course = Course(title, credits, user = self._user)
+    def create_course(self, title, creditss):
+        course = Course(title, creditss, user = self._user)
 
         return self._course_repository.create(course)
-        
 
 app_service = AppService()

@@ -5,7 +5,6 @@ from repositories.user_repository import UserRepository
 from repositories.course_repository import CourseRepository
 
 def main():
-    
     initialize_database.initialize_database()
 
     window = Tk()
@@ -21,3 +20,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
