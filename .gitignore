@@ -3,14 +3,5 @@ __pycache__
 .coverage
 htmlcov
 
-.vscode
-.DS_Store
-.coverage
-.pytest_cache
-htmlcov
-__pycache__
-*.py[cod]
-*$py.class
-
 verkkokurssi-app/database/database.sqlite
 verkkokurssi-app/database/test-database.sqlite
