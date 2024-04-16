@@ -30,7 +30,8 @@ class UserRepository:
         cursor.execute("SELECT * FROM users")
         users = cursor.fetchall()
 
-        return [User(row["username"], row["password"]) if row else None for row in users]
+        return [User(row["username"], row["password"], row["admin"]) if row else None for row in users]
+
 
     def delete_all_users(self):
         cursor = self._connection.cursor()
