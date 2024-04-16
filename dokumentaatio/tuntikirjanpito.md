@@ -8,3 +8,4 @@
 | 08.4 | 6.5 | Alkurakenteen viimeistely |
 | 09.4 | 3 | Testien ja alkurakenteen tekoa/korjausta |
 | 15.4 | 7 | (Viikko4) Kirjautumis/rekisteröinti näkymän viimeistely; Kurssi ja tehtävä näkymän aloistus/luonti|
+| 16.4 | 4.5 | (Viikko4) Pylint, Testien viimeistelyä ja Dokumentointi |

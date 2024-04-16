@@ -7,6 +7,8 @@ Oppimassa **ohjelmistotuotantoprosessin** *suunnittelusta* ja sen muista vaiheis
   - [vaatimusmäärittely](https://github.com/paulikarels/ot-harjoitustyo/blob/main/dokumentaatio/vaatimusmaarittely.md)
   - [tuntikirjanpito](https://github.com/paulikarels/ot-harjoitustyo/blob/main/dokumentaatio/tuntikirjanpito.md)
   - [changelog](https://github.com/paulikarels/ot-harjoitustyo/blob/main/dokumentaatio/changelog.md)
+  - [arkkitehtuuri](https://github.com/paulikarels/ot-harjoitustyo/blob/main/dokumentaatio/arkkitehtuuri.md)
+
 
 
 
