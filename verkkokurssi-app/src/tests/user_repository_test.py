@@ -21,7 +21,7 @@ class TestUserRepository(unittest.TestCase):
         self.connection.close()
 
     def test_create_user(self):
-        user = User("TestiKayttaja", "Salasana", False)
+        user = User(1, "TestiKayttaja", "Salasana", False)
         created_user = self.user_repository.create_user(user)
         self.assertIsNotNone(created_user.id) 
         self.assertEqual(created_user.username, "TestiKayttaja")
@@ -29,7 +29,7 @@ class TestUserRepository(unittest.TestCase):
         self.assertEqual(created_user.admin, False)
 
     def test_get_user_by_username_and_password(self):
-        user = User("TestiKayttaja", "Salasana", False)
+        user = User(1, "TestiKayttaja", "Salasana", False)
         self.user_repository.create_user(user)
         
         retrieved_user = self.user_repository.get_user_by_username_and_password("TestiKayttaja", "Salasana")
@@ -39,19 +39,21 @@ class TestUserRepository(unittest.TestCase):
         self.assertEqual(retrieved_user.admin, False)
 
     def test_get_all_users(self):
+        self.user_repository.delete_all_users()
+        
         users_data = [
-            ("Testi1", "Sala1", True),
-            ("Testi2", "Sala2", False),
-            ("Testi3", "Sala3", True)
+            (1,"Testi1", "Sala1", True),
+            (2,"Testi2", "Sala2", False),
+            (3,"Testi3", "Sala3", True)
         ]
-        for username, password, admin in users_data:
-            user = User(username, password, admin)
+        for ids, username, password, admin in users_data:
+            user = User(ids , username, password, admin)
             self.user_repository.create_user(user)
 
         all_users = self.user_repository.get_all_users()
         self.assertEqual(len(all_users), len(users_data))
 
         for i, user_data in enumerate(users_data):
-            self.assertEqual(all_users[i].username, user_data[0])
-            self.assertEqual(all_users[i].password, user_data[1])
-            self.assertEqual(all_users[i].admin,    user_data[2])
+            self.assertEqual(all_users[i].username, user_data[1])
+            self.assertEqual(all_users[i].password, user_data[2])
+            self.assertEqual(all_users[i].admin,    user_data[3])

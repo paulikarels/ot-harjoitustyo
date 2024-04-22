@@ -1,6 +1,8 @@
 import bcrypt
 from entities.course import Course
 from entities.user import User
+from repositories.user_repository import UserRepository
+from repositories.course_repository import CourseRepository
 
 class AppService:
 

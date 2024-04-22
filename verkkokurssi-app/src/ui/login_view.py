@@ -56,3 +56,6 @@ class LoginView:
         password = self._password_var.get()
 
         self._handle_login(username, password)
+
+    def clear_password_field(self):
+        self._password_var.set('')

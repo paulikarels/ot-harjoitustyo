@@ -6,8 +6,8 @@ class UserRepository:
 
     def create_user(self, user):
         cursor = self._connection.cursor()
-        cursor.execute("INSERT INTO users (username, password, admin) VALUES (?, ?, ?)",
-            (user.username, user.password, user.admin))
+        cursor.execute("INSERT INTO users (id, username, password, admin) VALUES (?, ?, ?, ?)",
+            (user.id, user.username, user.password, user.admin))
 
         user_id = cursor.lastrowid
         user.id = user_id
@@ -24,8 +24,9 @@ class UserRepository:
         user_data = cursor.fetchone()
 
         if user_data:
-            return (User(user_data["username"],
+            return (User(user_data["id"],user_data["username"],
                 user_data["password"], user_data["admin"]))
+
         return None
 
     def get_all_users(self):
@@ -33,7 +34,7 @@ class UserRepository:
         cursor.execute("SELECT * FROM users")
         users = cursor.fetchall()
 
-        return ([User(row["username"], row["password"],
+        return ([User(row["id"],row["username"], row["password"],
             row["admin"]) if row else None for row in users])
 
 

@@ -9,11 +9,19 @@ class CourseRepository:
         cursor.execute("INSERT INTO courses (title, credits, userID) VALUES (?, ?, ?)",
             (course.title, course.credits, user_id))
 
+        
         course.id = cursor.lastrowid
 
         self._connection.commit()
         return course
 
+    def get_course_with_userId(self, user_id):
+        cursor = self._connection.cursor()
+        cursor.execute("SELECT * FROM courses WHERE userID = ?", (user_id,))
+        courses = cursor.fetchall()
+
+        return [Course(row["title"], row["credits"], row["userID"]) if row else None for row in courses]
+        
     def get_all_courses(self):
         cursor = self._connection.cursor()
         cursor.execute("SELECT * FROM courses")
