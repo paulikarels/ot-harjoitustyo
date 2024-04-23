@@ -1,4 +1,3 @@
-from tkinter import Tk, ttk, constants
 import secrets
 from ui.login_view import LoginView
 from ui.sign_up_view import SignupView
@@ -49,8 +48,8 @@ class AppService:
                 self._current_user = user
                 self._show_online_course_view()
                 return
-            else:
-                error_message = "Incorrect password"
+
+            error_message = "Incorrect password"
         else:
             error_message = "Username not found"
         print("Login failed:", error_message)
@@ -67,44 +66,49 @@ class AppService:
         self._current_view.pack()
 
     def _handle_signup(self, username, password, admin):
-        new_user = User(self.generate_random_id(), username, password, admin) 
+        new_user = User(self.generate_random_id(), username, password, admin)
 
         user_repository = UserRepository(get_database_connection())
 
-        created_user = user_repository.create_user(new_user)  
+        user_repository.create_user(new_user)
 
     def _show_online_course_view(self):
         self._hide_current_view()
 
         exercise_view = ExerciseView(self._root, self._show_online_course_view)
 
-        self._current_view = OnlineCourseView(self._root, self._handle_course, self._get_courses, exercise_view, self._show_login_view)
+        self._current_view = OnlineCourseView(
+            self._root, self._handle_course,
+            self._get_courses, exercise_view,
+            self._show_login_view
+        )
 
         self._current_view.pack()
 
-
     def _handle_course(self, title, creditss):
         new_course = Course(title, creditss, self._current_user)
-        
+
         course_repository = CourseRepository(get_database_connection())
 
-        created_course = course_repository.create_course(new_course, self._current_user.id)
-    
+        course_repository.create_course(new_course, self._current_user.id)
+
     def _show_exercise_view(self):
         self._hide_current_view()
 
-        self._current_view = ExerciseView(self._root)
+        self._current_view = ExerciseView(self._root, self._show_online_course_view)
 
         self._current_view.pack()
 
     def _get_courses(self):
         if self._current_user:
             user_id = self._current_user.id
-            
-            return self._course_repository.get_course_with_userId(user_id)
-        else:
-            return []
+            return self._course_repository.get_course_with_userid(user_id)
+
+        return []
 
     @staticmethod
     def generate_random_id(length=10):
-        return ''.join(secrets.choice("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789") for _ in range(length))
+        return ''.join(
+                secrets.choice("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
+                for _ in range(length)
+            )

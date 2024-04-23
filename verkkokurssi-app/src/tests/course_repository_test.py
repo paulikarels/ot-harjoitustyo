@@ -68,3 +68,4 @@ class TestCourseRepository(unittest.TestCase):
 
         all_courses = self.course_repository.get_all_courses()
         self.assertNotIn(test_course, all_courses)
+        

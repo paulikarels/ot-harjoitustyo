@@ -1,5 +1,4 @@
 from tkinter import ttk, StringVar, constants
-from services.app_service import app_service
 
 class SignupView:
     def __init__(self, root, handle_signup, handle_show_login_view):
