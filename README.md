@@ -60,3 +60,8 @@ poetry run invoke coverage-report
 ```
 
 Raportti löytyy htmlcov-hakemistosta.
+
+
+### Nopeat käyttöohjeet kursseille
+
+Kirjautumisen jälkeen voit luoda kursseja ja **tupla-klikkaamalla** luotuja kursseja pääset kurssin *tehtävänäkymään*, jossa voit luoda tehtäviä kurssille.
