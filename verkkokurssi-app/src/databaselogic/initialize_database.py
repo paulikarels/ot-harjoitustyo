@@ -48,8 +48,13 @@ def create_tables(connection):
         );
     ''')
 
-    connection.commit()
+    cursor.execute('''
+        INSERT INTO users (id, admin, username, password)
+            VALUES (1, true, 't', 't');
+    ''')
+    
 
+    connection.commit()
 
 def initialize_database():
     connection = get_database_connection()

@@ -3,19 +3,21 @@ import secrets
 from ui.login_view import LoginView
 from ui.sign_up_view import SignupView
 from ui.online_course_view import OnlineCourseView
+from ui.exercise_view import ExerciseView
 from repositories.user_repository import UserRepository
 from repositories.course_repository import CourseRepository
+from repositories.exercise_repository import ExerciseRepository
 from entities.user import User
 from entities.course import Course
 from databaselogic.database import get_database_connection
 
 
-class UI:
-    def __init__(self, root, user_repository, course_repository):
+class AppService:
+    def __init__(self, root, user_repository, course_repository, exercise_repository):
         self._root = root
         self._user_repository = user_repository
         self._course_repository = course_repository
-        #self._exercise_repository = exercise_repository
+        self._exercise_repository = exercise_repository
         self._current_view = None
         self._current_user = None
 
@@ -74,22 +76,31 @@ class UI:
     def _show_online_course_view(self):
         self._hide_current_view()
 
-        self._current_view = OnlineCourseView(self._root, self._handle_course, self._get_courses)
+        exercise_view = ExerciseView(self._root, self._show_online_course_view)
+
+        self._current_view = OnlineCourseView(self._root, self._handle_course, self._get_courses, exercise_view, self._show_login_view)
 
         self._current_view.pack()
 
+
     def _handle_course(self, title, creditss):
         new_course = Course(title, creditss, self._current_user)
-
+        
         course_repository = CourseRepository(get_database_connection())
 
         created_course = course_repository.create_course(new_course, self._current_user.id)
+    
+    def _show_exercise_view(self):
+        self._hide_current_view()
+
+        self._current_view = ExerciseView(self._root)
+
+        self._current_view.pack()
 
     def _get_courses(self):
-        #print("another test", self._course_repository.get_all_courses())
         if self._current_user:
             user_id = self._current_user.id
-            print(self._current_user.username, "wazaaa")
+            
             return self._course_repository.get_course_with_userId(user_id)
         else:
             return []
