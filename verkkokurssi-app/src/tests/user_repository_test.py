@@ -13,15 +13,22 @@ class TestUserRepository(unittest.TestCase):
         self.connection = get_database_connection()
         self.user_repository = UserRepository(self.connection)
         initialize_database()
+        
 
-    def tearDown(self):
-        self.user_repository.delete_all_users()
+    @classmethod
+    def setUpClass(cls):
+        cls.connection = get_database_connection()
+        cls.user_repository = UserRepository(cls.connection)
+        initialize_database()
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.user_repository.delete_all_users()
+        cls.connection.close()
     
-    def _cleanup(self):
-        self.connection.close()
 
     def test_create_user(self):
-        user = User(1, "TestiKayttaja", "Salasana", False)
+        user = User(2, "TestiKayttaja", "Salasana", False)
         created_user = self.user_repository.create_user(user)
         self.assertIsNotNone(created_user.id) 
         self.assertEqual(created_user.username, "TestiKayttaja")
@@ -29,7 +36,7 @@ class TestUserRepository(unittest.TestCase):
         self.assertEqual(created_user.admin, False)
 
     def test_get_user_by_username_and_password(self):
-        user = User(1, "TestiKayttaja", "Salasana", False)
+        user = User(2, "TestiKayttaja", "Salasana", False)
         self.user_repository.create_user(user)
         
         retrieved_user = self.user_repository.get_user_by_username_and_password("TestiKayttaja", "Salasana")
@@ -42,9 +49,9 @@ class TestUserRepository(unittest.TestCase):
         self.user_repository.delete_all_users()
         
         users_data = [
-            (1,"Testi1", "Sala1", True),
-            (2,"Testi2", "Sala2", False),
-            (3,"Testi3", "Sala3", True)
+            (2,"Testi1", "Sala1", True),
+            (3,"Testi2", "Sala2", False),
+            (4,"Testi3", "Sala3", True)
         ]
         for ids, username, password, admin in users_data:
             user = User(ids , username, password, admin)

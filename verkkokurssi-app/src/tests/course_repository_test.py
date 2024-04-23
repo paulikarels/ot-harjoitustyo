@@ -11,7 +11,7 @@ class TestCourseRepository(unittest.TestCase):
         self.connection = get_database_connection()
         self.course_repository = CourseRepository(self.connection)
         self.user_repository = UserRepository(self.connection)
-        self.user = User(1,"TestiKayttaja", "Salasana", False)
+        self.user = User(2,"TestiKayttaja", "Salasana", False)
         initialize_database()
 
     def tearDown(self):
@@ -37,14 +37,14 @@ class TestCourseRepository(unittest.TestCase):
         ]
 
         users_data = [
-            ("Testi1", "Sala1", True),
-            ("Testi2", "Sala2", False),
-            ("Testi3", "Sala3", True)
+            (3,"Testi1", "Sala1", True),
+            (4,"Testi2", "Sala2", False),
+            (5,"Testi3", "Sala3", True)
         ]
         
         user_ids = []
-        for username, password, admin in users_data:
-            user = User(2, username, password, admin)
+        for ids, username, password, admin in users_data:
+            user = User(ids, username, password, admin)
             created_user = self.user_repository.create_user(user)
             user_ids.append(created_user.id)
 
