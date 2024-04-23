@@ -1,6 +1,8 @@
 # Ohjelmistotekniikka, harjoitustyö
 Oppimassa **ohjelmistotuotantoprosessin** *suunnittelusta* ja sen muista vaiheista!
 
+Löydät uusimman ladattavan version [täältä](https://github.com/paulikarels/ot-harjoitustyo/releases/tag/viikko5) tai alhaalta Dokumentaatio osiosta.
+
 ##  Dokumentaatio
 
 - [dokumentaatiot](https://github.com/paulikarels/ot-harjoitustyo/tree/main/dokumentaatio)
@@ -8,11 +10,14 @@ Oppimassa **ohjelmistotuotantoprosessin** *suunnittelusta* ja sen muista vaiheis
   - [tuntikirjanpito](https://github.com/paulikarels/ot-harjoitustyo/blob/main/dokumentaatio/tuntikirjanpito.md)
   - [changelog](https://github.com/paulikarels/ot-harjoitustyo/blob/main/dokumentaatio/changelog.md)
   - [arkkitehtuuri](https://github.com/paulikarels/ot-harjoitustyo/blob/main/dokumentaatio/arkkitehtuuri.md)
-
+  - [ensimmäinen release](https://github.com/paulikarels/ot-harjoitustyo/releases/tag/viikko5)
 
 
 
 ## Asennus
+Ensikisi, sinulla tulee olla *poetry* sekä *python* versio >= **^3.8** asennettuna.
+
+Pura asenettu sovellus ja jatka ohjeiden mukaan:
 
 1. Asenna riippuvuudet verkkokurssi-app polusta komennolla
 
