@@ -20,14 +20,19 @@ Oppimassa **ohjelmistotuotantoprosessin** *suunnittelusta* ja sen muista vaiheis
 poetry install
 ```
 
-2. Aktivoi virtuaaliympäristö (Suositeltavaa)
+2. Vaadittavat alustustoimipiteet suoritetaan komennolla
+
+```bash
+poetry run invoke build
+```
+3. Aktivoi virtuaaliympäristö (Suositeltavaa)
 
 ```bash
 poetry shell
 ```
 
 
-3. Käynnistä sovellus komennolla
+4. Käynnistä sovellus komennolla
 
 ```bash
 poetry run invoke start
