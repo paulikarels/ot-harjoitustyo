@@ -53,3 +53,54 @@ AppService pääsee seuraaviin luokkiin; User, Course ja Exercise  [CourseReposi
       Course "*" -- "1" User
       Course "1" -- "*" Exercise
 ```
+
+
+## Päätoiminnallisuudet
+
+Sovelluksemme ja sen toimintalogiikka voidaan kuvata  sekvenssikaaviona.
+
+### Käyttäjän luominen
+
+Uuden käyttäjän luomista varten tarvitaan käyttäjätunnus (uniikki), salasana ja ylläpitäjätieto. Käyttäjän luonti eteenee "Create User" painikkea painaen.
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant UI
+    participant AppService
+    participant UserRepository
+    participant testUser
+    User->>UI: click "Create User" button
+    UI->>AppService: create_user("testUser", "test", true)
+    AppService->>UserRepository: get_user_by_username_and_password("testUser", "test")
+    UserRepository-->>AppService: None
+    AppService->>testUser: User("testUser", "test", true)
+    AppService->>UserRepository: create_user(testUser)
+    UserRepository-->>AppService: user
+    AppService-->>UI: user
+    UI->>UI: _show_online_course_view()
+```
+
+Logiikkaamme alkaa painamisenjälkeen Appservicestä, jossa hoidamme käyttäjätunnuksen ja UserRepository:n avulla varmistemme sen olemassa olon.
+Tämän jälkeen tallennamme uuden luodun Userin create_user metodilla. Käyttäjä luonnin jälkeen voidaan UI:n avulla jatkaa/kirjautua Kurssinäkymään.
+
+### Sisäänkirjautuminen
+
+Käyttäjä voi kirjautua luodun käyttäjän jälkeen tunkemalla käyttäjätunnuksen ja salasanan syötekenttiin ja klikkaamalla painiketta "Log in".
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant UI
+    participant AppService
+    participant UserRepository
+    User->>UI: click "Log in" button
+    UI->>AppService: _handle_login("testUser", "test")
+    AppService->>UserRepository: get_user_by_username_and_password("testUser", "test")
+    UserRepository-->>AppService: user
+    AppService-->>UI: user
+    UI->UI: _show_online_course_view()
+```
+
+Yhtälailla kuin luomisessa, "Log in" painamisen jälkeen `AppService` etsii metodillaa onko käyttäjä olemassa sen käyttäjätunnuksella ja salasanalla
+`UserRepository`:n avulla. Tämän jälkeen `UserRepository` selvittää ovatko tunnukset olemassa ja täsmäävätkö tunnukset tietokannassa olevien kanssa. Nyt näiden jälkeen käyttäjä pääsee Kurssinäkymään kirjautuneella käyttäjällä.

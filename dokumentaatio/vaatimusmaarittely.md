@@ -5,7 +5,8 @@ Sovellus toimii **verkkokurssialustana**, jonka pää ideana on mahdollistaa yll
 
 Käyttäjät voivat joko olla ylläpitäjiä tai peruskäyttäjiä. **[tehty]**
 
-Ylläpitäjä voi graafisesti hallinoida oman kurssin rekisteröityneitä peruskäyttäjiä, sekä seurata peruskäyttäjien tehtävien tuloksia. Peruskäyttäjät sekä ylläpitäjät voivat vapaasti liittyä haluamiinsa kursseihin ja tarkastella omien vastauksien tuloksia. Kurssitehtävät tarkistetaan automaattisesti joko monivalintoina tai tekstikenttinä.
+Ylläpitäjä voi graafisesti hallinoida oman kurssin rekisteröityneitä peruskäyttäjiä, sekä seurata peruskäyttäjien tehtävien tuloksia. 
+Peruskäyttäjät sekä ylläpitäjät voivat vapaasti liittyä haluamiinsa kursseihin **[tehty]** ja tarkastella omien vastauksien tuloksia. Kurssitehtävät tarkistetaan automaattisesti joko monivalintoina tai tekstikenttinä.
 
 
 ## Päätoiminnallisuudet
@@ -19,7 +20,7 @@ Luoduilla käyttäjillä voi kirjautua luoduillaan tunnuksilla. **[tehty]**
 ### Päänäkymä 
 Näkymässsä ylläpitäjä voi luoda kirjatumisen jälkeen uusia kursseja **[tehty]**
 
-Käyttäjät voivat liittyä olemassa oleviin kursseihin graafista näkymää hyödyntäen.
+Käyttäjät voivat liittyä olemassa oleviin kursseihin graafista näkymää hyödyntäen. **[tehty]**
 
 Peruskäyttäjä kykenee vain liittymään olemassa oleviin kursseihin ja seurata omaa edistymistään.
 
