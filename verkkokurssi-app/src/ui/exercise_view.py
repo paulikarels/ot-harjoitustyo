@@ -47,7 +47,6 @@ class ExerciseView:
     def _create_exercise(self):
         question = self._exercise_question_entry.get()
         if question:
-            # Here you would create the exercise and add it to the list
             self._exercise_listbox.insert("", "end", text=question)
             self._exercise_question_entry.delete(0, constants.END)
         else:
@@ -56,7 +55,6 @@ class ExerciseView:
     def _mark_done(self):
         selected_item = self._exercise_listbox.focus()
         if selected_item:
-            # Here you would mark the selected exercise as done
             self._exercise_listbox.item(selected_item, tags=("done",))
         else:
             print("Please select an exercise to mark as done.")
