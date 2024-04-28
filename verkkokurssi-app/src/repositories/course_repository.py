@@ -19,7 +19,7 @@ class CourseRepository:
         cursor.execute("SELECT * FROM courses WHERE userID = ?", (user_id,))
         courses = cursor.fetchall()
 
-        return ([Course(row["title"], row["credits"], row["userID"])
+        return ([Course(row["id"], row["title"], row["credits"], row["userID"])
             if row else None for row in courses])
 
     def get_all_courses(self):
@@ -27,7 +27,7 @@ class CourseRepository:
         cursor.execute("SELECT * FROM courses")
         courses = cursor.fetchall()
 
-        return ([Course(row["title"], row["credits"],
+        return ([Course(row["id"], row["title"], row["credits"],
             row["userID"]) if row else None for row in courses])
 
     def delete_course(self, course):

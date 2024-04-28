@@ -83,7 +83,7 @@ class UI:
         self._current_view.pack()
 
     def _handle_course(self, title, creditss):
-        new_course = Course(title, creditss, self._current_user)
+        new_course = Course(self.generate_random_id() ,title, creditss, self._current_user)
 
         course_repository = CourseRepository(get_database_connection())
 
