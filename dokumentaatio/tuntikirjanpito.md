@@ -11,6 +11,8 @@
 | 16.4 | 4.5 | (Viikko4) Pylint, Testien viimeistelyä ja Dokumentointi |
 | 22.4 | 4 | (Viikko5) Kirjautumis- ja kurssinäkymien tietokannallinen toiminnalisuus ja korjauksia siihen|
 | 23.4 | 7 | (Viikko5) Kurssien tehtäväpohjan rakennus/aloitus, Pylint, Testien viimeistelyä ja Dokumentointi |
+| 28.4 | 4 | (Viikko6) Tehtäväpohjan testejä ja tietokanta korjausta |
+| 29.4 | 4 | (Viikko6) Lisätty tietokantalogiikka tehtäville |
 
 
 ## Tunnit viikottain
@@ -19,5 +21,6 @@
 | Viikko 3 | 13.5 | Projektin aloitus, kirjatumis näkymä |
 | Viikko 4 | 11.5 | Käyttäjä rekisteröinti/kirjautumis viimesitely, kurssi ja tehtävä näkymänpohjan aloitus |
 | Viikko 5 | 11 | Koodirakenteen korjailua, tietokantaloogikan tekoa, kurssien tehtävä näkymän aloitus |
+| Viikko 6 | 8 | Tehtäväpohjan tekoa ja sovelluksen toimivuuden parannusta |
 
 | Tunnit Yhteensä:  36 | 
