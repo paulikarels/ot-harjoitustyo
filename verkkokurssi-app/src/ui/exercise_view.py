@@ -1,9 +1,15 @@
 from tkinter import ttk, constants
+from entities.exercise import Exercise
 
 class ExerciseView:
-    def __init__(self, root, show_course_view):
+    def __init__(self, root, show_course_view, exercise_repository, course_repository,  current_course_id, current_course_title, get_exercises_for_course):
         self._root = root
         self._show_course_view = show_course_view
+        self._course_repository = course_repository
+        self._exercise_repository = exercise_repository
+        self.current_course_title = current_course_title
+        self._current_course_id = current_course_id
+        self._get_exercises_for_course = get_exercises_for_course
         self._frame = ttk.Frame(master=self._root)
         self._initialize()
 
@@ -19,8 +25,11 @@ class ExerciseView:
         self._exercise_label = ttk.Label(master=self._frame, text="Exercises:")
         self._exercise_label.grid(row=0, column=0, padx=8, pady=8)
 
-        self._exercise_listbox = ttk.Treeview(master=self._frame)
+        self._exercise_listbox = ttk.Treeview(master=self._frame, columns=("Status"))
         self._exercise_listbox.grid(row=1, column=0, sticky=(constants.N, constants.S, constants.E, constants.W), padx=8, pady=8)
+
+        self._exercise_listbox.heading("#0", text="Exercise")
+        self._exercise_listbox.heading("Status", text="Status")
 
         self._exercise_question_entry = ttk.Entry(master=self._frame, width=50)
         self._exercise_question_entry.grid(row=2, column=0, padx=8, pady=8)
@@ -41,14 +50,18 @@ class ExerciseView:
         for item in self._exercise_listbox.get_children():
             self._exercise_listbox.delete(item)
 
-        for exercise in exercises:
-            self._exercise_listbox.insert("", "end", text=exercise)
+        for exercise, status in exercises:
+            self._exercise_listbox.insert("", "end", text=exercise, values=(status))
 
     def _create_exercise(self):
         question = self._exercise_question_entry.get()
         if question:
-            self._exercise_listbox.insert("", "end", text=question)
+            new_exercise = Exercise(1, description=question, done=False, course=self._current_course_id)
+            print("create", new_exercise.description)
+            self._exercise_repository.create(new_exercise)
+            self._reload_exercises()
             self._exercise_question_entry.delete(0, constants.END)
+    
         else:
             print("Please enter a question for the exercise.")
 
@@ -59,10 +72,15 @@ class ExerciseView:
         else:
             print("Please select an exercise to mark as done.")
 
+    
+    def _reload_exercises(self):
+        exercises = self._get_exercises_for_course(self.current_course_title)
+        self.display_exercises(exercises)
+            
+
     def close(self):
         self.destroy()
 
     def _back_button_clicked(self):
         self._show_course_view()
         self.close()
-

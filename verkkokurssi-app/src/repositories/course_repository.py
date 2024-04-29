@@ -22,6 +22,14 @@ class CourseRepository:
         return ([Course(row["id"], row["title"], row["credits"], row["userID"])
             if row else None for row in courses])
 
+    def get_course_with_title(self, course_title):
+        cursor = self._connection.cursor()
+        cursor.execute("SELECT * FROM courses WHERE title = ?", (course_title,))
+        courses = cursor.fetchall()
+        
+        return ([Course(row["id"], row["title"], row["credits"], row["userID"])
+            if row else None for row in courses])
+
     def get_all_courses(self):
         cursor = self._connection.cursor()
         cursor.execute("SELECT * FROM courses")

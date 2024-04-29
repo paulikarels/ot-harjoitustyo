@@ -3,12 +3,16 @@ from tkinter import Text
 from ui.exercise_view import ExerciseView
 
 class OnlineCourseView:
-    def __init__(self, root, handle_course, get_courses, exercise_view, show_login_view):
+    def __init__(self, root, handle_course, get_courses, show_login_view, course_repository, exercise_repository, show_online_course_view):
         self._root = root
         self._handle_course = handle_course
         self._get_courses = get_courses
-        self._exercise_view = exercise_view
         self._show_login_view = show_login_view
+        self._show_online_course_view = show_online_course_view 
+        self._current_course = None
+        self._course_repository = course_repository
+        self._exercise_repository = exercise_repository
+        self._current_course_id = None
         self._frame = ttk.Frame(master=self._root)  
         self._initialize()
 
@@ -89,16 +93,24 @@ class OnlineCourseView:
     def _handle_course_click(self, event):
         item = self._course_listbox.selection()
         if item:
+            self._current_course = self._course_listbox.item(item, "text")
             course_title = self._course_listbox.item(item, "text")
+            self._current_course_id = self._course_repository.get_course_with_title(course_title)[0].id
     
             self.destroy()
             
             exercises = self._get_exercises_for_course(course_title)
-            self._exercise_view.display_exercises(exercises)
+            exercise_view = ExerciseView(self._root, self._show_online_course_view, self._exercise_repository, self._course_repository, self._current_course_id, course_title, self._get_exercises_for_course)
+            exercise_view.display_exercises(exercises)
             
-            self._exercise_view.pack()
-
-
+            exercise_view.pack()
 
     def _get_exercises_for_course(self, course_title):
-        return [""]
+        course = self._course_repository.get_course_with_title(course_title)
+        if course:
+            exercises = self._exercise_repository.get_exercises_for_course(course[0].id)
+            exercise_data = [(exercise.description, "Done" if exercise.done else "Not Done") for exercise in exercises]
+            return exercise_data
+        else:
+            return []
+            

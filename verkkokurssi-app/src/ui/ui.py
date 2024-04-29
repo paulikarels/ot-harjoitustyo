@@ -71,13 +71,14 @@ class UI:
 
     def _show_online_course_view(self):
         self._hide_current_view()
-
-        exercise_view = ExerciseView(self._root, self._show_online_course_view)
-
+        
         self._current_view = OnlineCourseView(
             self._root, self._handle_course,
-            self._get_courses, exercise_view,
-            self._show_login_view
+            self._get_courses,
+            self._show_login_view, 
+            self._course_repository,
+            self._exercise_repository,
+            self._show_online_course_view
         )
 
         self._current_view.pack()
