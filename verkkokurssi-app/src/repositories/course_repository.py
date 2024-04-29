@@ -1,13 +1,13 @@
 from entities.course import Course
 
 class CourseRepository:
-    def __init__(self, connection=None):
+    def __init__(self, connection):
         self._connection = connection
 
     def create_course(self, course, user_id):
         cursor = self._connection.cursor()
-        cursor.execute("INSERT INTO courses (title, credits, userID) VALUES (?, ?, ?)",
-            (course.title, course.credits, user_id))
+        cursor.execute("INSERT INTO courses (id, title, credits, userID) VALUES (?, ?, ?, ?)",
+            (course.id, course.title, course.credits, user_id))
 
         course.id = cursor.lastrowid
 
@@ -18,7 +18,7 @@ class CourseRepository:
         cursor = self._connection.cursor()
         cursor.execute("SELECT * FROM courses WHERE userID = ?", (user_id,))
         courses = cursor.fetchall()
-
+        
         return ([Course(row["id"], row["title"], row["credits"], row["userID"])
             if row else None for row in courses])
 

@@ -13,6 +13,8 @@ class ExerciseView:
         self._frame = ttk.Frame(master=self._root)
         self._initialize()
 
+        self._reload_exercises()
+
     def pack(self):
         self._frame.pack(fill=constants.BOTH, expand=True)
 
@@ -56,8 +58,9 @@ class ExerciseView:
     def _create_exercise(self):
         question = self._exercise_question_entry.get()
         if question:
+            print("courseid", self._current_course_id)
             new_exercise = Exercise(1, description=question, done=False, course=self._current_course_id)
-            print("create", new_exercise.description)
+            #print("create", new_exercise.description)
             self._exercise_repository.create(new_exercise)
             self._reload_exercises()
             self._exercise_question_entry.delete(0, constants.END)
@@ -75,12 +78,15 @@ class ExerciseView:
     
     def _reload_exercises(self):
         exercises = self._get_exercises_for_course(self.current_course_title)
+        #print(exercises, self.current_course_title)
         self.display_exercises(exercises)
+        #exercises = self._get_exercises_for_course(self.current_course_title)
+        #self.display_exercises(exercises)
             
 
     def close(self):
         self.destroy()
 
     def _back_button_clicked(self):
-        self._show_course_view()
+        self._show_course_view(self._current_course_id)
         self.close()

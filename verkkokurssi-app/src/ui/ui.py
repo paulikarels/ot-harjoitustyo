@@ -69,11 +69,14 @@ class UI:
 
         user_repository.create_user(new_user)
 
-    def _show_online_course_view(self):
+    def _show_online_course_view(self, current_course_id=None):
+        if current_course_id is not None:
+          self._current_course_id = current_course_id
         self._hide_current_view()
-        
+
         self._current_view = OnlineCourseView(
-            self._root, self._handle_course,
+            self._root, 
+            self._handle_course,
             self._get_courses,
             self._show_login_view, 
             self._course_repository,
@@ -85,7 +88,7 @@ class UI:
 
     def _handle_course(self, title, creditss):
         new_course = Course(self.generate_random_id() ,title, creditss, self._current_user)
-
+        print("test", new_course.id)
         course_repository = CourseRepository(get_database_connection())
 
         course_repository.create_course(new_course, self._current_user.id)
@@ -107,6 +110,6 @@ class UI:
     @staticmethod
     def generate_random_id(length=10):
         return ''.join(
-                secrets.choice("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
+                secrets.choice("123456789")
                 for _ in range(length)
             )

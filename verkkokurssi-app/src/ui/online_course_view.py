@@ -75,10 +75,10 @@ class OnlineCourseView:
 
     def _add_course(self):
         course_name = self._course_name_text.get("1.0", "end-1c")
-        credits = self._credits_entry.get()
+        creditss = self._credits_entry.get()
 
-        if course_name and credits.isdigit() and int(credits) >= 0:
-            self._handle_course(course_name, int(credits))
+        if course_name and creditss.isdigit() and int(creditss) >= 0:
+            self._handle_course(course_name, int(creditss))
             self._load_courses()
             self._course_name_text.delete("1.0", "end")
             self._credits_entry.delete(0, 'end')
@@ -95,14 +95,20 @@ class OnlineCourseView:
         if item:
             self._current_course = self._course_listbox.item(item, "text")
             course_title = self._course_listbox.item(item, "text")
-            self._current_course_id = self._course_repository.get_course_with_title(course_title)[0].id
-    
+            print("anotehr test", self._course_repository.get_course_with_title(course_title)[0].id)
+            current_course_id = self._course_repository.get_course_with_title(course_title)[0].id
             self.destroy()
-            
-            exercises = self._get_exercises_for_course(course_title)
-            exercise_view = ExerciseView(self._root, self._show_online_course_view, self._exercise_repository, self._course_repository, self._current_course_id, course_title, self._get_exercises_for_course)
-            exercise_view.display_exercises(exercises)
-            
+
+            exercise_view = ExerciseView(
+                self._root,
+                self._show_online_course_view,
+                self._exercise_repository,
+                self._course_repository,
+                current_course_id,  
+                course_title,
+                self._get_exercises_for_course 
+            )
+
             exercise_view.pack()
 
     def _get_exercises_for_course(self, course_title):
