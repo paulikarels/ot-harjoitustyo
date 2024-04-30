@@ -1,5 +1,31 @@
-# Ohjelman arkkitehtuuri
+# Arkkitehtuurikuvaus
 
+## Rakenne
+
+Koodin pakkausrakenne on seuraava:
+
+```mermaid
+classDiagram
+
+    ui..>services
+    services..>repositories
+    services..>ui
+    repositories..>entities
+```
+
+
+ Pakkaus **ui**, joka sisältää käyttöliittymästä vastaavan koodin on yhdessä riippuvainen pakkauksesta **services**, jonka kanssa suoritetaan pakkauksen **repositories** toimintoja näyttääkseen tietoja.  **repositories** sisältää  tallennuksesta vastaavaa kodia ja pakkaus **entities** sisältää luokkia, jotka kuvastavat sovelluksen oloita. 
+
+## Käyttöliittymä
+
+Käyttöliittymä sisältää seuraavat näkymät:
+- Kirjautuminen (aloitussivu)
+- käyttäjän rekisteröintisivu
+- Kurssinäkymä
+- Tehtävänäkymä
+
+ UI luokka vastaa kaikista näkymistä. Vain yksi näkymä on näkyvillä ja jokainen on toteutettu omana luokkana.
+ 
 ## Sovelluslogiikka
 
 Sovellus muodostuu seuraavista luokista:
@@ -35,7 +61,7 @@ Metodit käyttäjien ja kurssien luomiseen ovat esimerkiksi:
 - `create_course(self, course, user_id)`
 
 
-Toiminnallisuudesta vastaa luokka [AppService](https://github.com/paulikarels/ot-harjoitustyo/blob/main/verkkokurssi-app/src/services/app_service.py) (työn alla, tällä hetkellä UI luokka vastaa kyseistä).
+Toiminnallisuudesta vastaa luokka [AppService](https://github.com/paulikarels/ot-harjoitustyo/blob/main/verkkokurssi-app/src/services/app_service.py) 
 
 AppService pääsee seuraaviin luokkiin; User, Course ja Exercise  [CourseRepository](https://github.com/paulikarels/ot-harjoitustyo/blob/main/verkkokurssi-app/src/repositories/course_repository.py), [UserRepository](https://github.com/paulikarels/ot-harjoitustyo/blob/main/verkkokurssi-app/src/repositories/user_repository.py) ja [ExerciseRepository](https://github.com/paulikarels/ot-harjoitustyo/blob/main/verkkokurssi-app/src/repositories/exercise_repository.py) kautta.
 
