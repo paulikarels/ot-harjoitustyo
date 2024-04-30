@@ -10,6 +10,7 @@ Löydät uusimman ladattavan version [täältä](https://github.com/paulikarels/
   - [tuntikirjanpito](https://github.com/paulikarels/ot-harjoitustyo/blob/main/dokumentaatio/tuntikirjanpito.md)
   - [changelog](https://github.com/paulikarels/ot-harjoitustyo/blob/main/dokumentaatio/changelog.md)
   - [arkkitehtuuri](https://github.com/paulikarels/ot-harjoitustyo/blob/main/dokumentaatio/arkkitehtuuri.md)
+  - [kayttöohje](https://github.com/paulikarels/ot-harjoitustyo/blob/main/dokumentaatio/kayttoohje.md)
   - [ensimmäinen release](https://github.com/paulikarels/ot-harjoitustyo/releases/tag/viikko5)
 
 
@@ -71,7 +72,3 @@ poetry run invoke coverage-report
 
 Raportti löytyy htmlcov-hakemistosta.
 
-
-### Nopeat käyttöohjeet kursseille
-
-Kirjautumisen jälkeen voit luoda kursseja ja **tupla-klikkaamalla** luotuja kursseja pääset kurssin *tehtävänäkymään*, jossa voit luoda tehtäviä kurssille.
