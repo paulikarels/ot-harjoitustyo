@@ -1,3 +1,4 @@
+import secrets
 from tkinter import ttk, constants
 from entities.exercise import Exercise
 
@@ -12,7 +13,6 @@ class ExerciseView:
         self._get_exercises_for_course = get_exercises_for_course
         self._frame = ttk.Frame(master=self._root)
         self._initialize()
-
         self._reload_exercises()
 
     def pack(self):
@@ -58,31 +58,30 @@ class ExerciseView:
     def _create_exercise(self):
         question = self._exercise_question_entry.get()
         if question:
-            print("courseid", self._current_course_id)
-            new_exercise = Exercise(1, description=question, done=False, course=self._current_course_id)
-            #print("create", new_exercise.description)
-            self._exercise_repository.create(new_exercise)
-            self._reload_exercises()
-            self._exercise_question_entry.delete(0, constants.END)
-    
+            existing_exercises = self._exercise_repository.get_exercises_for_course(self._current_course_id)
+            if any(exercise.description == question for exercise in existing_exercises):
+                print("An exercise with the same description already exists for this course.")
+            else:
+                new_exercise = Exercise(self.generate_random_id(), description=question, done=False, course=self._current_course_id)
+                self._exercise_repository.create(new_exercise)
+                print("ID1", new_exercise.id)
+                self._reload_exercises()
+                self._exercise_question_entry.delete(0, constants.END)
         else:
             print("Please enter a question for the exercise.")
 
     def _mark_done(self):
         selected_item = self._exercise_listbox.focus()
         if selected_item:
-            self._exercise_listbox.item(selected_item, tags=("done",))
+            exercise_name = self._exercise_listbox.item(selected_item, "text")
+            self._exercise_repository.mark_exercise_as_done(exercise_name)
+            self._reload_exercises()
         else:
             print("Please select an exercise to mark as done.")
 
-    
     def _reload_exercises(self):
         exercises = self._get_exercises_for_course(self.current_course_title)
-        #print(exercises, self.current_course_title)
         self.display_exercises(exercises)
-        #exercises = self._get_exercises_for_course(self.current_course_title)
-        #self.display_exercises(exercises)
-            
 
     def close(self):
         self.destroy()
@@ -90,3 +89,9 @@ class ExerciseView:
     def _back_button_clicked(self):
         self._show_course_view(self._current_course_id)
         self.close()
+
+    def generate_random_id(self, length=10):
+        return ''.join(
+                secrets.choice("123456789")
+                for _ in range(length)
+            )

@@ -88,7 +88,6 @@ class UI:
 
     def _handle_course(self, title, creditss):
         new_course = Course(self.generate_random_id() ,title, creditss, self._current_user)
-        print("test", new_course.id)
         course_repository = CourseRepository(get_database_connection())
 
         course_repository.create_course(new_course, self._current_user.id)

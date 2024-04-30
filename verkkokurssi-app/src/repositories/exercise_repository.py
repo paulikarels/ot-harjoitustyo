@@ -26,8 +26,8 @@ class ExerciseRepository:
 
         """
         cursor = self._connection.cursor()
-        cursor.execute("INSERT INTO exercises (description, done, courseID) VALUES (?, ?, ?)",
-                       (exercise.description, exercise.done, exercise.course))
+        cursor.execute("INSERT INTO exercises (id, description, done, courseID) VALUES (?, ?, ?, ?)",
+                       (exercise.id, exercise.description, exercise.done, exercise.course))
 
         self._connection.commit()
 
@@ -74,3 +74,14 @@ class ExerciseRepository:
 
         return [Exercise(row["id"], row["description"], row["done"], row["courseID"])
                 for row in exercises]
+
+    def mark_exercise_as_done(self, exercise_description):
+        """
+        Merkkaa tehtävä olion tehdyksi annetulla tehtävä olio ID:llä
+
+        Args:
+            exercise_id: Tehtävän ID, joka tullaan merkkaamaan tehdyksi.
+        """
+        cursor = self._connection.cursor()
+        cursor.execute("UPDATE exercises SET done = ? WHERE description = ?", (True, exercise_description))
+        self._connection.commit()
