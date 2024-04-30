@@ -1,4 +1,3 @@
-from tkinter import Tk 
 from repositories.user_repository import UserRepository
 from repositories.course_repository import CourseRepository
 from repositories.exercise_repository import ExerciseRepository

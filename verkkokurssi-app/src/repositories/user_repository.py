@@ -54,8 +54,9 @@ class UserRepository:
         user_data = cursor.fetchone()
 
         if user_data:
-            return User(user_data["id"], user_data["username"], user_data["password"], user_data["admin"])
-
+            return (User(user_data["id"], user_data["username"],
+                user_data["password"], user_data["admin"])
+)
         return None
 
     def get_all_users(self):
@@ -70,7 +71,8 @@ class UserRepository:
         cursor.execute("SELECT * FROM users")
         users = cursor.fetchall()
 
-        return [User(row["id"], row["username"], row["password"], row["admin"]) if row else None for row in users]
+        return ([User(row["id"], row["username"], row["password"],
+            row["admin"]) if row else None for row in users])
 
     def delete_all_users(self):
         """

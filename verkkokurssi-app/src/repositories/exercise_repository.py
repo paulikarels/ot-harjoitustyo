@@ -26,7 +26,7 @@ class ExerciseRepository:
 
         """
         cursor = self._connection.cursor()
-        cursor.execute("INSERT INTO exercises (id, description, done, courseID) VALUES (?, ?, ?, ?)",
+        cursor.execute("INSERT INTO exercises(id, description, done, courseID) VALUES (?, ?, ?, ?)",
                        (exercise.id, exercise.description, exercise.done, exercise.course))
 
         self._connection.commit()
@@ -83,5 +83,6 @@ class ExerciseRepository:
             exercise_id: Tehtävän ID, joka tullaan merkkaamaan tehdyksi.
         """
         cursor = self._connection.cursor()
-        cursor.execute("UPDATE exercises SET done = ? WHERE description = ?", (True, exercise_description))
+        cursor.execute("UPDATE exercises SET done = ? WHERE description = ?",
+            (True, exercise_description))
         self._connection.commit()
