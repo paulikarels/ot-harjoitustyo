@@ -64,7 +64,7 @@ class TestCourseRepository(unittest.TestCase):
         test_course = Course(1, "Testi Kurssi", 3, created_user.id)
         self.course_repository.create_course(test_course, created_user.id)
 
-        self.course_repository.delete_course(test_course)
+        self.course_repository.delete_course_with_course_id(test_course.id)
 
         all_courses = self.course_repository.get_all_courses()
         self.assertNotIn(test_course, all_courses)

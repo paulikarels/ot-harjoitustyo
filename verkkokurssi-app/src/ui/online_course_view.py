@@ -88,14 +88,16 @@ class OnlineCourseView:
     def _delete_course(self):
         selected_item = self._course_listbox.selection()
         if selected_item:
-            self._course_listbox.delete(selected_item)
+            course_title = self._course_listbox.item(selected_item, "text")
+            course_id = self._course_repository.get_course_with_title(course_title)[0].id
+            self._course_repository.delete_course_with_course_id(course_id)
+            self._load_courses()
 
     def _handle_course_click(self, event):
         item = self._course_listbox.selection()
         if item:
             self._current_course = self._course_listbox.item(item, "text")
             course_title = self._course_listbox.item(item, "text")
-            print("anotehr test", self._course_repository.get_course_with_title(course_title)[0].id)
             current_course_id = self._course_repository.get_course_with_title(course_title)[0].id
             self.destroy()
 

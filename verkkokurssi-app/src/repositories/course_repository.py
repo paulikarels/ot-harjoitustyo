@@ -86,16 +86,15 @@ class CourseRepository:
         return [Course(row["id"], row["title"], row["credits"], row["userID"])
                 if row else None for row in courses]
 
-    def delete_course(self, course):
+    def delete_course_with_course_id(self, course_id):
         """
-        Poistaa kurssin tietokannasta.
+        Poistaa kurssin tietokannasta kurssi IDn perusteella.
 
         Args:
-            course: Kurssi olio poistettavaksi.
-
+            course_id: Kurssi ID poistettavaksi.
         """
         cursor = self._connection.cursor()
-        cursor.execute("DELETE FROM courses WHERE title = ?", (course.title,))
+        cursor.execute("DELETE FROM courses WHERE id = ?", (course_id,))
         self._connection.commit()
 
     def delete_all_courses(self):
