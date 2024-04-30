@@ -48,6 +48,13 @@ def create_tables(connection):
         );
     ''')
 
+    #cursor.execute('''INSERT INTO users (id, username, password, admin) VALUES (1, "t", "t", true)''')
+
+    #cursor.execute('''INSERT INTO courses (id, userID, title, credits) VALUES (1, 1, "testiKurssi", 5)''')
+    #cursor.execute('''INSERT INTO courses (id, userID, title, credits) VALUES (2, 1, "qwer", 2)''')
+
+    #cursor.execute('''INSERT INTO exercises (id, courseID, description, done) VALUES (1, 1, "Tehtävä ratkaistavaksi", true)''')
+    
     connection.commit()
 
 def initialize_database():
