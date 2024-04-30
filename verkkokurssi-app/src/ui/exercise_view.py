@@ -64,7 +64,6 @@ class ExerciseView:
             else:
                 new_exercise = Exercise(self.generate_random_id(), description=question, done=False, course=self._current_course_id)
                 self._exercise_repository.create(new_exercise)
-                print("ID1", new_exercise.id)
                 self._reload_exercises()
                 self._exercise_question_entry.delete(0, constants.END)
         else:

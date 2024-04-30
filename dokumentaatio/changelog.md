@@ -21,3 +21,8 @@
 - Alustavat testit tehtäväpohjille
 - Koodirakenteen korjailua
 
+## Viikko 6
+
+- Tehtäväpohjan teko ja viimeistely kursseille
+- Testejä laajennettu
+- Tietokannan yhteynäisyyden toimivuuden viimeistelyä käyttöliittymän kanssa

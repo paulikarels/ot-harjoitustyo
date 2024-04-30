@@ -1,5 +1,6 @@
-# Ohjelmistotekniikka, harjoitustyö
-Oppimassa **ohjelmistotuotantoprosessin** *suunnittelusta* ja sen muista vaiheista!
+# Verkkokurssisovellus
+Verkkokurssisovellus, jonka ideana on käyttäjien mahdollisuus luoda kursseja ja niihin tehtäviä, jota voidaan tehdä!
+
 
 Löydät uusimman ladattavan version [täältä](https://github.com/paulikarels/ot-harjoitustyo/releases/tag/viikko5) tai alhaalta Dokumentaatio osiosta.
 
