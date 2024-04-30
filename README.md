@@ -1,8 +1,8 @@
 # Verkkokurssisovellus
-Verkkokurssisovellus, jonka ideana on käyttäjien mahdollisuus luoda kursseja ja niihin tehtäviä, jota voidaan tehdä!
+Verkkokurssisovellus, jossa käyttäjät voivat luoda kursseja ja niihin tehtäviä, jota voidaan tehdä!
 
 
-Löydät uusimman ladattavan version [täältä](https://github.com/paulikarels/ot-harjoitustyo/releases/tag/viikko5) tai alhaalta Dokumentaatio osiosta.
+Löydät ladattavat releasit versioineen [täältä](https://github.com/paulikarels/ot-harjoitustyo/releases) tai alhaalta Dokumentaatio osiosta.
 
 ##  Dokumentaatio
 
@@ -13,6 +13,7 @@ Löydät uusimman ladattavan version [täältä](https://github.com/paulikarels/
   - [arkkitehtuuri](https://github.com/paulikarels/ot-harjoitustyo/blob/main/dokumentaatio/arkkitehtuuri.md)
   - [kayttöohje](https://github.com/paulikarels/ot-harjoitustyo/blob/main/dokumentaatio/kayttoohje.md)
   - [ensimmäinen release](https://github.com/paulikarels/ot-harjoitustyo/releases/tag/viikko5)
+  - [toinen release(uusin)](https://github.com/paulikarels/ot-harjoitustyo/releases/tag/viikko6)
 
 
 
