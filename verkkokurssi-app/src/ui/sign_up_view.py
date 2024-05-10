@@ -1,4 +1,4 @@
-from tkinter import ttk, StringVar, constants
+from tkinter import ttk, StringVar, constants, messagebox
 
 class SignupView:
     def __init__(self, root, handle_signup, handle_show_login_view):
@@ -72,13 +72,27 @@ class SignupView:
         username = self._username_var.get()
         password = self._password_var.get()
         admin_status = self._admin_var.get()
+        admin = (admin_status == "True")
 
-        admin = admin_status == "True"
+        if (username == "" or len(username) <= 3  
+            or password == "" or len(password) <= 3):
+            self.handle_failed_sign_in()
+        else:
+            self.handle_successful_sign_in(username, password, admin)
 
+    def handle_successful_sign_in(self, username, password, admin):
         try:
             self._handle_signup(username, password, admin)
             self._message_var.set("Sign up successful!")
             self._message_label.config(foreground="green")
         except Exception as e:
-            self._message_var.set(f"Sign up failed: {str(e)}")
-            self._message_label.config(foreground="red") 
+            if ("UNIQUE" in str(e)):
+                self._message_var.set(f"Username already exists!")
+                self._message_label.config(foreground="red") 
+            else:
+                self._message_var.set(f"Sign up failed: {str(e)}")
+                self._message_label.config(foreground="red") 
+
+    def handle_failed_sign_in(self):
+
+        messagebox.showerror('Error', 'Username and password has to be 4 characters or more!')

@@ -35,7 +35,8 @@ def create_tables(connection):
             id SERIAL PRIMARY KEY,
             userID INTEGER REFERENCES users ON DELETE CASCADE,
             title TEXT UNIQUE,
-            credits INTEGER
+            credits INTEGER,
+            created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
         );
     ''')
 
@@ -44,7 +45,8 @@ def create_tables(connection):
             id SERIAL PRIMARY KEY,
             courseID INTEGER REFERENCES courses ON DELETE CASCADE,
             description TEXT,
-            done BOOLEAN DEFAULT false
+            done BOOLEAN DEFAULT false,
+            marked_done_at TIMESTAP WITH TIME ZONE
         );
     ''')
 

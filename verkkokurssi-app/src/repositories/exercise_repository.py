@@ -83,6 +83,6 @@ class ExerciseRepository:
             exercise_id: Tehtävän ID, joka tullaan merkkaamaan tehdyksi.
         """
         cursor = self._connection.cursor()
-        cursor.execute("UPDATE exercises SET done = ? WHERE description = ?",
+        cursor.execute("UPDATE exercises SET done = ?, marked_done_at = CURRENT_TIMESTAMP WHERE description = ?",
             (True, exercise_description))
         self._connection.commit()
