@@ -94,5 +94,4 @@ class SignupView:
                 self._message_label.config(foreground="red") 
 
     def handle_failed_sign_in(self):
-
         messagebox.showerror('Error', 'Username and password has to be 4 characters or more!')

@@ -6,7 +6,7 @@ from databaselogic.database import get_database_connection
 
 def create_users():
     cursor = get_database_connection().cursor()
-    cursor.execute("INSERT INTO users (id, admin, username, password) VALUES (1, true, 't', 't')")
+    cursor.execute("INSERT INTO users (id, admin, username, password) VALUES (1, true, 'mono', 'mono')")
 
 def create_courses():
     cursor = get_database_connection().cursor()

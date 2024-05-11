@@ -1,11 +1,10 @@
 import secrets
-from tkinter import Tk 
+from tkinter import messagebox 
 from .login_view import LoginView
 from .sign_up_view import SignupView
 from .online_course_view import OnlineCourseView
 from repositories.user_repository import UserRepository
 from repositories.course_repository import CourseRepository
-from repositories.exercise_repository import ExerciseRepository
 from .exercise_view import ExerciseView
 from entities.user import User
 from entities.course import Course
@@ -45,11 +44,10 @@ class UI:
                 self._current_user = user
                 self._show_online_course_view()
                 return
-
-            error_message = "Incorrect password"
         else:
-            error_message = "Username not found"
-        print("Login failed:", error_message)
+            print("Login failed: Username not found")
+            messagebox.showerror('Error', 'Username or password did not match or not found!')
+
         self._current_view.clear_password_field()
 
     def _show_handle_sign_up_view(self):

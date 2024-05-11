@@ -1,5 +1,5 @@
 import secrets
-from tkinter import ttk, constants
+from tkinter import ttk, constants, StringVar
 from entities.exercise import Exercise
 
 class ExerciseView:
@@ -12,6 +12,7 @@ class ExerciseView:
         self._current_course_id = current_course_id
         self._get_exercises_for_course = get_exercises_for_course
         self._frame = ttk.Frame(master=self._root)
+        self._message_var = StringVar(value="")
         self._initialize()
         self._reload_exercises()
 
@@ -24,6 +25,11 @@ class ExerciseView:
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
 
+        self._message_label = ttk.Label(
+            master=self._frame,
+            textvariable=self._message_var,
+            foreground="green" 
+        )
         self._exercise_label = ttk.Label(master=self._frame, text="Exercises:")
         self._exercise_label.grid(row=0, column=0, padx=8, pady=8)
 
@@ -45,6 +51,7 @@ class ExerciseView:
         self._back_button = ttk.Button(master=self._frame, text="Back", command=self._back_button_clicked)
         self._back_button.grid(row=5, column=0, padx=8, pady=8)
 
+        self._message_label.grid(columnspan=2, sticky=(constants.E, constants.W), padx=8, pady=8)
         self._frame.grid_columnconfigure(0, weight=1)
         self._frame.grid_rowconfigure(1, weight=1)
 
@@ -61,13 +68,20 @@ class ExerciseView:
             existing_exercises = self._exercise_repository.get_exercises_for_course(self._current_course_id)
             if any(exercise.description == question for exercise in existing_exercises):
                 print("An exercise with the same description already exists for this course.")
+                self._message_var.set("An exercise with the same description already exists for this course.")
+                self._message_label.config(foreground="red") 
+                
             else:
                 new_exercise = Exercise(self.generate_random_id(), description=question, done=False, course=self._current_course_id)
                 self._exercise_repository.create(new_exercise)
                 self._reload_exercises()
                 self._exercise_question_entry.delete(0, constants.END)
+                self._message_var.set("Exercise created successfully.")
+                self._message_label.config(foreground="green") 
         else:
             print("Please enter a question for the exercise.")
+            self._message_var.set("Please enter a question for the exercise.")
+            self._message_label.config(foreground="red") 
 
     def _mark_done(self):
         selected_item = self._exercise_listbox.focus()
@@ -75,7 +89,11 @@ class ExerciseView:
             exercise_name = self._exercise_listbox.item(selected_item, "text")
             self._exercise_repository.mark_exercise_as_done(exercise_name)
             self._reload_exercises()
+            self._message_var.set("Exercise marked as done.")
+            self._message_label.config(foreground="green") 
         else:
+            self._message_var.set("Please select an exercise to mark as done.")
+            self._message_label.config(foreground="red") 
             print("Please select an exercise to mark as done.")
 
     def _reload_exercises(self):

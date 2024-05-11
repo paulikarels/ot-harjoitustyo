@@ -1,4 +1,4 @@
-from tkinter import ttk, StringVar, constants
+from tkinter import ttk, StringVar, constants, messagebox
 from tkinter import Text
 from ui.exercise_view import ExerciseView
 import plotly.graph_objs as go
@@ -90,6 +90,7 @@ class OnlineCourseView:
             self._course_name_text.delete("1.0", "end")
             self._credits_entry.delete(0, 'end')
         else:
+            messagebox.showerror('Error', 'Course name cannot be empty, and credits should be a positive integer!')
             print("Course name cannot be empty, and credits should be a positive integer.")
 
     def _delete_course(self):
