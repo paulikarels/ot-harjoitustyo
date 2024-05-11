@@ -1,10 +1,6 @@
 import unittest
 from entities.user import User
-from entities.course import Course
-from entities.exercise import Exercise
 from repositories.user_repository import UserRepository
-from repositories.course_repository import CourseRepository
-from repositories.exercise_repository import ExerciseRepository
 from databaselogic.database import get_database_connection
 from databaselogic.initialize_database import initialize_database
 
@@ -13,7 +9,6 @@ class TestUserRepository(unittest.TestCase):
         self.connection = get_database_connection()
         self.user_repository = UserRepository(self.connection)
         initialize_database()
-        
 
     @classmethod
     def setUpClass(cls):
