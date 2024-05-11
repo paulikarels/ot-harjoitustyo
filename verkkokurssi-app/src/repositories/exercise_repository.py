@@ -75,6 +75,34 @@ class ExerciseRepository:
         return [Exercise(row["id"], row["description"], row["done"], row["courseID"])
                 for row in exercises]
 
+    def get_exercises_for_user(self, user_id):
+        """
+        Etsii ja palauttaa tehtävän, annetulla käyttäjä id:llä kannasta
+
+        Args:
+            user_id: Käyttäjän id.
+
+        Returns:
+            Lista tehtävistä jotka on yhdistetty käyttäjään
+        """
+        cursor = self._connection.cursor()
+        cursor.execute("""
+            SELECT *
+            FROM exercises
+            INNER JOIN courses
+            WHERE courses.userID = ?
+        """, (user_id,))
+        exercises = cursor.fetchall()
+
+        exercises_with_userid = []
+        for row in exercises:
+            exercise = Exercise(row["id"], row["description"],
+                                row["done"], row["courseID"])
+            exercise.marked_done_at = row["marked_done_at"]
+            exercises_with_userid.append((exercise))
+
+        return exercises_with_userid
+
     def mark_exercise_as_done(self, exercise_description):
         """
         Merkkaa tehtävä olion tehdyksi annetulla tehtävä olio ID:llä
@@ -83,6 +111,7 @@ class ExerciseRepository:
             exercise_id: Tehtävän ID, joka tullaan merkkaamaan tehdyksi.
         """
         cursor = self._connection.cursor()
-        cursor.execute("UPDATE exercises SET done = ?, marked_done_at = CURRENT_TIMESTAMP WHERE description = ?",
+        cursor.execute('''UPDATE exercises
+                SET done = ?, marked_done_at = CURRENT_TIMESTAMP WHERE description = ?''',
             (True, exercise_description))
         self._connection.commit()

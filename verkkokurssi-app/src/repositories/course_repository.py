@@ -50,8 +50,13 @@ class CourseRepository:
         cursor.execute("SELECT * FROM courses WHERE userID = ?", (user_id,))
         courses = cursor.fetchall()
 
-        return [Course(row["id"], row["title"], row["credits"], row["userID"])
-                if row else None for row in courses]
+        courses_with_created_at = []
+        for row in courses:
+            course = Course(row["id"], row["title"], row["credits"], row["userID"])
+            course.created_at = row["created_at"]
+            courses_with_created_at.append(course)
+
+        return courses_with_created_at
 
     def get_course_with_title(self, course_title):
         """

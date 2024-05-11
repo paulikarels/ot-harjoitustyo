@@ -81,7 +81,8 @@ class UI:
             self._show_login_view, 
             self._course_repository,
             self._exercise_repository,
-            self._show_online_course_view
+            self._show_online_course_view,
+            self._current_user
         )
 
         self._current_view.pack()
