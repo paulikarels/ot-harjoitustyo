@@ -50,3 +50,13 @@ Tehtävänäkymässä voit lisätä tehtäviä tehtäviä syöttämällä teksti
 ![](./image/exercise_view_with_exercise.png)
 
 Luotu tehtävä listataan näkymään ja se voidaan merkata tehdyksi klikkaamalla sitä ja painamalla "Mark as Done"
+
+## Graafinen kaavio tehdyille kursseille ja suoritetuille tehtäville
+
+Voit katsoa päivämäärittäin tehtyjä kursseja ja niiden suoritettuja tehtäviä painamalla "Show Progress Chart"
+
+![](./image/progress_chart.png) 
+
+Näet tämän jälkeen (esimerkki näkymä) kyseisen näkymän oletus selaimellassi, mistä näet luotujen kurssien aikataulut ja tehtävien suoritusajat.
+
+![](./image/Chart_webView.png.png) 

@@ -1,32 +1,42 @@
 # Vaatimusmäärittely
 
 ## Sovelluksen käyttötarkoitus
-Sovellus toimii **verkkokurssialustana**, jonka pää ideana on mahdollistaa ylläpitäjien luoda kursseja ja niihin ratkottavia tehtäviä opiskelukäyttöön.
+Sovellus toimii **verkkokurssialustana**, jonka pää ideana on mahdollistaa luoda kursseja ja niihin tehtäviä joita käyttäjä voi merkata tehdyksi, niin kuin "todo-list" tyylisesti.
 
-Käyttäjät voivat joko olla ylläpitäjiä tai peruskäyttäjiä. **[tehty]**
-
-Ylläpitäjä voi graafisesti hallinoida oman kurssin rekisteröityneitä peruskäyttäjiä, sekä seurata peruskäyttäjien tehtävien tuloksia. 
-Peruskäyttäjät sekä ylläpitäjät voivat vapaasti liittyä haluamiinsa kursseihin **[tehty]** ja tarkastella omien vastauksien tuloksia. Kurssitehtävät tarkistetaan automaattisesti joko monivalintoina tai tekstikenttinä.
+Käyttäjä  voi graafisesti luoda ja poistaa kursseja, sekä seurata ja merkata tehdyksi omia tehtäviään. 
+Käyttäjät  voivat vapaasti liittyä haluamiinsa tehtyihin kursseihin ja tarkastella omien vastauksien tuloksia ja niiden teko/suoritus päiviä kaaviolla.
 
 
-## Päätoiminnallisuudet
+## Rekisteröinti ja kirjautuminen
+Käyttäjiä voidaan rekisteröidä ja sovellus tarkistaa käyttäjän olemassaolon ja hyväksyy tai hylkää sen käyttäjän olemassaolon mukaan.
+- Käyttäjätunnuksen tulee olla uniikki ja pituudeltaan vähintään 4 merkkiä
 
-### Rekisteröinti ja kirjautuminen
-Käyttäjiä voidaan rekisteröidä ylläpitäjänä sekä peruskäyttäjänä, sovellus tarkistaa käyttäjän olemassaolon ja hyväksyy tai hylkää sen käyttäjän olemassaolon mukaan.  **[tehty]**
-
-Luoduilla käyttäjillä voi kirjautua luoduillaan tunnuksilla. **[tehty]**
-
-
-### Päänäkymä 
-Näkymässsä ylläpitäjä voi luoda kirjatumisen jälkeen uusia kursseja **[tehty]**
-
-Käyttäjät voivat liittyä olemassa oleviin kursseihin graafista näkymää hyödyntäen. **[tehty]**
-
-Peruskäyttäjä kykenee vain liittymään olemassa oleviin kursseihin ja seurata omaa edistymistään.
+Luoduilla käyttäjillä voi kirjautua luoduillaan tunnuksilla
+- Jos käyttäjätunnusta ei ole olemassa tai salasana on väärä annetaan virheilmoitus
 
 
-### Kurssinäkymä
-Ylläpitäjä voi seurata oman luodun kurssin tietoja, kuten ketkä ovat liittyneet kurssille ja heidän tehtävien suorituksia. 
-Myös ylläpitäjllä on mahdollisuus poistaa käyttäjiä omista kursseista.
+## Päänäkymä 
+Näkymässsä käyttäjät voivat luoda kirjatumisen jälkeen uusia kursseja
+- Kurssin nimi kentässä tulee olla arvo, muuten annetaan virheilmoitus
+- Kurssin pistearvo tulee olla positiviinen numero, muuten annetaan virheilmoitus
 
-Liittyneissä kursseissa käyttäjä näkee kurssin tehtävien suorituksensa automaattisella sovelluksen välittömällä tehtävien tarkistuksella.
+ Käyttäjät voivat liittyä olemassa oleviin kursseihin graafista näkymää hyödyntäen tuplaklikkaamalla kurssia. 
+   -  Käyttäjät voivat poistaa omia tehtyjä kursseja graafista näkymää hyödyntäen.
+
+- Käyttäjät kykenevät vain liittymään olemassa oleviin kursseihin ja seurata omaa edistymistään.
+    - Jos kursseja ei ole luotu selain popup taulu on tyhjä
+
+ Käyttäjä voi kirjautua ulos
+
+
+## Kurssin tehtävä näkymä
+
+Käyttäjä kykenee luoda kurssille tehtäviä
+- Ilmoitetaan jos tehtävä on jo olemassa tai tyhjä
+
+Tehtävät voi merkata tehdyiksi graafista käyttöliittymää hyödyntäen
+- Ilmoitetaan jos ei ole valittu merkattavaa tehtävää
+
+## Jatkokehitysideoita
+
+Antaa erikoisoikeuksia pääkäyttäjille (admin) esimerkiksi.

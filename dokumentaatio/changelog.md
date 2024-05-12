@@ -26,3 +26,9 @@
 - Tehtäväpohjan teko ja viimeistely kursseille
 - Testejä laajennettu
 - Tietokannan yhteynäisyyden toimivuuden viimeistelyä käyttöliittymän kanssa
+
+## Viikko 7
+
+- Lisätty graafinen näkymä tehdyille kursseille ja suoritetuille tehtäville plotlyllä
+- Dokumentaatio
+- Testien laajennus

@@ -14,8 +14,8 @@
 | 28.4 | 4 | (Viikko6) Tehtäväpohjan testejä ja tietokanta korjausta |
 | 29.4 | 4 | (Viikko6) Lisätty tietokantalogiikka tehtäville |
 | 30.4 | 4.5 | (Viikko6) Tehtäväpohjan viimeistely, dokumentointia, korjauksia ja muuta |
-
-
+| 10.5 | 2 | (Viikko6) Plotly kaavion teko ja virheviestien lisäys |
+| 12.5 | 8 | (Viikko6) Plotlyn viimeistely, testien teko ja dokumentaatio |
 
 ## Tunnit viikottain
 | Viikko | Viikon tunnit | teema |
@@ -24,5 +24,5 @@
 | Viikko 4 | 11.5 | Käyttäjä rekisteröinti/kirjautumis viimesitely, kurssi ja tehtävä näkymänpohjan aloitus |
 | Viikko 5 | 11 | Koodirakenteen korjailua, tietokantaloogikan tekoa, kurssien tehtävä näkymän aloitus |
 | Viikko 6 | 12.5 | Tehtäväpohjan tekoa, tietokannan yhtenäisyyden tekoa sovellukselle ja sovelluksen yleistä toimivuuden parannusta testeineen|
-
-| Tunnit Yhteensä:  48 | 
+| Viikko 7 | 10 | Plotly kaavio kurssien ja tehtävien suoritus päiville, lisä testausta ja dokumentaatiota |
+| Tunnit Yhteensä:  58 | 
