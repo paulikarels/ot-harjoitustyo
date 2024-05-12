@@ -12,8 +12,10 @@ Löydät ladattavat releasit versioineen [täältä](https://github.com/paulikar
   - [changelog](https://github.com/paulikarels/ot-harjoitustyo/blob/main/dokumentaatio/changelog.md)
   - [arkkitehtuuri](https://github.com/paulikarels/ot-harjoitustyo/blob/main/dokumentaatio/arkkitehtuuri.md)
   - [kayttöohje](https://github.com/paulikarels/ot-harjoitustyo/blob/main/dokumentaatio/kayttoohje.md)
+  - [testausdokumentti](https://github.com/paulikarels/ot-harjoitustyo/blob/main/dokumentaatio/testaus.md)
   - [ensimmäinen release](https://github.com/paulikarels/ot-harjoitustyo/releases/tag/viikko5)
-  - [toinen release(uusin)](https://github.com/paulikarels/ot-harjoitustyo/releases/tag/viikko6)
+  - [toinen release](https://github.com/paulikarels/ot-harjoitustyo/releases/tag/viikko6)
+  - [Loppupalautus release (uusin)](https://github.com/paulikarels/ot-harjoitustyo/releases/tag/viikko7)
 
 
 
