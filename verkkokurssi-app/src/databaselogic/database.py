@@ -6,4 +6,3 @@ connection.row_factory = sqlite3.Row
 
 def get_database_connection():
     return connection
-    

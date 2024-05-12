@@ -7,14 +7,12 @@ Koodin pakkausrakenne on seuraava:
 ```mermaid
 classDiagram
 
-    ui..>services
-    services..>repositories
+    ui..>repositories
     services..>ui
     repositories..>entities
 ```
+ Pakkaus **services**, joka sisältää käyttöliittymästä vastaavan pakkauksen ja koodin (**UI**). UI on  riippuvainen pakkauksesta  **repositories**, jonka avulla poimitaan näyttettäviä tietoja.  **repositories** sisältää  tallennuksesta vastaavaa koodia ja pakkaus **entities** sisältää luokkia, jotka kuvastavat sovelluksen oloita. 
 
-
- Pakkaus **ui**, joka sisältää käyttöliittymästä vastaavan koodin on yhdessä riippuvainen pakkauksesta **services**, jonka kanssa suoritetaan pakkauksen **repositories** toimintoja näyttääkseen tietoja.  **repositories** sisältää  tallennuksesta vastaavaa kodia ja pakkaus **entities** sisältää luokkia, jotka kuvastavat sovelluksen oloita. 
 
 ## Käyttöliittymä
 
@@ -61,21 +59,22 @@ Metodit käyttäjien ja kurssien luomiseen ovat esimerkiksi:
 - `create_course(self, course, user_id)`
 
 
-Toiminnallisuudesta vastaa luokka [AppService](https://github.com/paulikarels/ot-harjoitustyo/blob/main/verkkokurssi-app/src/services/app_service.py) 
+Toiminnallisuudesta vastaa luokka [AppService](https://github.com/paulikarels/ot-harjoitustyo/blob/main/verkkokurssi-app/src/services/app_service.py) , mikä viittaa UI luokkaan, joka hoitaa näkymät ja niiden poimittavat datat.
 
-AppService pääsee seuraaviin luokkiin; User, Course ja Exercise  [CourseRepository](https://github.com/paulikarels/ot-harjoitustyo/blob/main/verkkokurssi-app/src/repositories/course_repository.py), [UserRepository](https://github.com/paulikarels/ot-harjoitustyo/blob/main/verkkokurssi-app/src/repositories/user_repository.py) ja [ExerciseRepository](https://github.com/paulikarels/ot-harjoitustyo/blob/main/verkkokurssi-app/src/repositories/exercise_repository.py) kautta.
+AppService pääsee seuraaviin luokkiin UI:n kautta; User, Course ja Exercise  [CourseRepository](https://github.com/paulikarels/ot-harjoitustyo/blob/main/verkkokurssi-app/src/repositories/course_repository.py), [UserRepository](https://github.com/paulikarels/ot-harjoitustyo/blob/main/verkkokurssi-app/src/repositories/user_repository.py) ja [ExerciseRepository](https://github.com/paulikarels/ot-harjoitustyo/blob/main/verkkokurssi-app/src/repositories/exercise_repository.py) kautta.
 
 ```mermaid
  classDiagram
-      AppService ..> UserRepository
+      AppService ..> UI
+      UI ..> UserRepository
       UserRepository ..> User
-      AppService "0..1" -- "0..1" User
-      AppService ..> CourseRepository 
+      UI "0..1" -- "0..1" User
+      UI ..> CourseRepository 
       CourseRepository ..> Course
-      AppService "0..1" -- "0..1" Course
-      AppService ..> ExerciseRepository
+      UI "0..1" -- "0..1" Course
+      UI ..> ExerciseRepository
       ExerciseRepository ..> Exercise
-      AppService "0..1" -- "0..1" Exercise
+      UI "0..1" -- "0..1" Exercise
       Course "*" -- "1" User
       Course "1" -- "*" Exercise
 ```

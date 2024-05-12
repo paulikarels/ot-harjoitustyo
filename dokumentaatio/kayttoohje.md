@@ -59,4 +59,14 @@ Voit katsoa päivämäärittäin tehtyjä kursseja ja niiden suoritettuja tehtä
 
 Näet tämän jälkeen (esimerkki näkymä) kyseisen näkymän oletus selaimellassi, mistä näet luotujen kurssien aikataulut ja tehtävien suoritusajat.
 
-![](./image/Chart_webView.png.png) 
+![](./image/Chart_webView.png) 
+
+Voit laatia "testikannan" suoritamalla kyseisen komennon alustamisen jälkeen, jossa lisätään tietokantaan dataa nähdäkseen kaavion suuremalla datalla:
+
+`poetry run invoke datapack`
+
+Kirjaudu seuraavilla tunnuksilla (mono mono):
+![](./image/mono.png) 
+
+Jolla pääset näkymään, jossa on laajemmin luotu kursseja ja tehtäviä
+![](./image/mono_courses.png) 

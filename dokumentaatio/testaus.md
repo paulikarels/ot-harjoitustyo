@@ -33,4 +33,4 @@ Kaikki [määrittelydokumentin](https://github.com/paulikarels/ot-harjoitustyo/b
 
 ## Sovelluksen laatuongelmat
 
-Sovellus ei anna virheilmoitusta, jos buildattua SQLite tietokantaa ei ole alustettu.
+Sovellus ei anna virheilmoitusta, jos buildattua SQLite tietokantaa ei ole alustettu, vaikka se ei ole pakollinen.
