@@ -16,31 +16,46 @@ class TestExerciseRepository(unittest.TestCase):
         self.exercise_repository = ExerciseRepository(self.connection)
         self.course_repository = CourseRepository(self.connection)
         self.user_repository = UserRepository(self.connection)
+        self.user = User(1,"TestiKayttaja", "Salasana", False)
+        self.course = Course(1, "Testi Kurssi", 5, self.user.id)
         initialize_database()
 
     def tearDown(self):
         self.exercise_repository.delete_all_exercises()
 
     def test_create_exercise(self):
-        exercise = Exercise(1, "Question 1", False, 1)
+        exercise = Exercise(1, "Tehtava 1", False, 1)
         created_exercise = self.exercise_repository.create(exercise)
-        self.assertIsNotNone(created_exercise.id)
+        self.assertIsNotNone(created_exercise.id)   
 
     def test_get_all_exercises(self):
-        exercise = Exercise(1, "Question 1", False, 1)
+        created_course = self.course_repository.create_course(self.course, self.user.id)
+        exercise = Exercise(1, "Tehtava 1", False, created_course.id)
         self.exercise_repository.create(exercise)
         exercises = self.exercise_repository.get_all_exercises()
         self.assertTrue(len(exercises) > 0)
 
-    def test_get_all_exercises2(self):
-        user = User(123,"TestiKayttaja", "Salasana", False)
-        created_user = self.user_repository.create_user(user)
-        course = Course(1, "Testi Kurssi", 5, created_user.id)
-        created_course = self.course_repository.create_course(course, created_user.id)
-        exercise = Exercise(1, "Question 1", False, 1)
+    def test_get_exercises_for_course(self):
+        created_course = self.course_repository.create_course(self.course, self.user.id)
+        exercise = Exercise(1, "Tehtava 1", False, created_course.id)
         self.exercise_repository.create(exercise)
-        exercises = self.exercise_repository.get_all_exercises()
+        exercises = self.exercise_repository.get_exercises_for_course(created_course.id)
         self.assertTrue(len(exercises) > 0)
+
+    def test_get_exercises_for_user(self):
+        created_course = self.course_repository.create_course(self.course, self.user.id)
+        exercise = Exercise(1, "Tehtava 1", False, created_course.id)
+        self.exercise_repository.create(exercise)
+        exercises = self.exercise_repository.get_exercises_for_user(self.user.id)
+        self.assertTrue(len(exercises) > 0)
+
+    def test_mark_exercise_as_done(self):
+        created_course = self.course_repository.create_course(self.course, self.user.id)
+        exercise = Exercise(1, "Tehtava 1", False, created_course.id)
+        created_exercise = self.exercise_repository.create(exercise)
+        self.exercise_repository.mark_exercise_as_done(created_exercise.description)
+        updated_exercise = self.exercise_repository.get_all_exercises()[0]
+        self.assertTrue(updated_exercise.done)
 
 if __name__ == '__main__':
     unittest.main()
